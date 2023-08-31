@@ -14,14 +14,15 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-      create: (context)=> ApiProvider(),
+      create: (context) => ApiProvider(),
       child: MaterialApp(
         title: 'Flutter Demo',
+        debugShowCheckedModeBanner: false,
         theme: ThemeData(
-          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-          useMaterial3: true,
+          colorScheme: ColorScheme.fromSeed(seedColor: Colors.redAccent),
+         
         ),
-        home: const HomePage(),
+        home: HomePage(),
       ),
     );
   }

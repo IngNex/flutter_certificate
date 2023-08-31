@@ -5,19 +5,19 @@ List<Certificate> certificateFromJson(String str) => List<Certificate>.from(json
 String certificateToJson(List<Certificate> data) => json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 
 class Certificate {
-    final String id;
-    final String fullName;
-    final String dni;
-    final String area;
-    final String course;
-    final int mark;
-    final String company;
-    final String modality;
-    final String duration;
-    final String certification;
-    final int validity;
-    final String date;
-    final String status;
+    final String? id;
+    final String? fullName;
+    final String? dni;
+    final String? area;
+    final String? course;
+    final dynamic mark;
+    final String? company;
+    final String? modality;
+    final String? duration;
+    final String? certification;
+    final int? validity;
+    final String? date;
+    final String? status;
 
     Certificate({
         required this.id,
