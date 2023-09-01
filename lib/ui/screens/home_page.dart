@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:qr/ui/models/user_models.dart';
 import 'package:qr/ui/provider/api_provider.dart';
+import 'package:qr/ui/screens/pdf/pdf_certificate.dart';
 
 const List<String> list = ['nombre', 'dni', 'curso'];
 
@@ -44,7 +45,7 @@ class _HomePageState extends State<HomePage> {
     var certificate = apiProvider.certificate;
     return Scaffold(
       appBar: AppBar(
-        title: Text('ESSAC | CERTIFICADOS'),
+        title: const Text('ESSAC | CERTIFICADOS'),
         centerTitle: true,
       ),
       drawer: Drawer(),
@@ -167,7 +168,6 @@ class _HomePageState extends State<HomePage> {
                         ),
                         DropdownButton<String>(
                           value: dropdownValue,
-                          
                           elevation: 8,
                           isExpanded: true,
                           style: const TextStyle(
@@ -189,7 +189,6 @@ class _HomePageState extends State<HomePage> {
                             return DropdownMenuItem<String>(
                               value: value,
                               child: Text(value),
-
                             );
                           }).toList(),
                         ),
@@ -201,9 +200,10 @@ class _HomePageState extends State<HomePage> {
                       columnSpacing: 11,
                       rowsPerPage: PaginatedDataTable.defaultRowsPerPage,
                       source: RowSource(
-                        myData: certificate,
-                        count: certificate.length,
-                      ),
+                          myData: certificate,
+                          count: certificate.length,
+                          newContext: context),
+                      
                       columns: [
                         const DataColumn(
                           label: Text(
@@ -297,9 +297,11 @@ class _HomePageState extends State<HomePage> {
 class RowSource extends DataTableSource {
   final List<Certificate> myData;
   final count;
+  BuildContext newContext;
   RowSource({
     required this.myData,
     required this.count,
+    required this.newContext,
   });
   DataRow? getRow(int index) {
     assert(index >= 0);
@@ -309,10 +311,25 @@ class RowSource extends DataTableSource {
     }
     final certificate = myData[index];
 
+    bool selected = false;
+
     return DataRow.byIndex(
       index: index,
+      selected: selected,
+      onSelectChanged: (value) {
+        selected = value!;
+      },
+      onLongPress: () {
+        Navigator.of(newContext).push(
+          MaterialPageRoute(
+            builder: (newContext) {
+              return PdfCertificate(user_certificate: myData[index],);
+            },
+          ),
+        );
+      },
       cells: [
-        DataCell(Text(certificate.certification ?? "Name")),
+        DataCell(Text(certificate.certification.toString())),
         DataCell(Text(certificate.fullName.toString())),
         DataCell(Text(certificate.dni.toString())),
         DataCell(Text(certificate.course.toString())),
@@ -333,5 +350,5 @@ class RowSource extends DataTableSource {
   int get rowCount => count;
 
   @override
-  int get selectedRowCount => 0;
+  int get selectedRowCount => count;
 }
