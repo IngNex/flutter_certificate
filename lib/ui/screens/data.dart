@@ -1,19 +1,80 @@
-class Data {
-  String? name;
-  int? phone;
-  int? Age;
+import 'package:flutter/material.dart';
 
-  Data({required this.name, required this.phone, required this.Age});
+
+class DataTableDemo extends StatefulWidget {
+  @override
+  _DataTableDemoState createState() => _DataTableDemoState();
 }
 
-List<Data> myData = [
-  Data(name: "Khaliq", phone: 09876543, Age: 28),
-  Data(name: "David", phone: 6464646, Age: 30),
-  Data(name: "Kamal", phone: 8888, Age: 32),
-  Data(name: "Ali", phone: 3333333, Age: 33),
-  Data(name: "Muzal", phone: 987654556, Age: 23),
-  Data(name: "Taimu", phone: 46464664, Age: 24),
-  Data(name: "Mehdi", phone: 5353535, Age: 36),
-  Data(name: "Rex", phone: 244242, Age: 38),
-  Data(name: "Alex", phone: 323232323, Age: 29),
-];
+class _DataTableDemoState extends State<DataTableDemo> {
+  final List<int> _selectedRows = [];
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('PaginatedDataTable with Selection'),
+      ),
+      body: PaginatedDataTable(
+        columns: [
+          DataColumn(label: Text('Name')),
+          DataColumn(label: Text('Age')),
+        ],
+        source: MyDataTableSource(
+          selectedRows: _selectedRows,
+        ),
+        header: Text('Sample Data Table'),
+        rowsPerPage: 5,
+      ),
+    );
+  }
+}
+
+class MyDataTableSource extends DataTableSource {
+  final List<int> selectedRows;
+
+  MyDataTableSource({required this.selectedRows});
+
+  @override
+  DataRow? getRow(int index) {
+    return DataRow(
+      onSelectChanged: (isSelected) {
+        
+
+        if (isSelected != null) {
+          _handleRowSelection(isSelected, index);
+      };},
+      cells: [
+        DataCell(Text('Name $index')),
+        DataCell(Text('Age $index')),
+      ],
+      selected: selectedRows.contains(index),
+    );
+  }
+
+  @override
+  bool get isRowCountApproximate => false;
+
+  @override
+  int get rowCount => 100;
+
+  @override
+  int get selectedRowCount => selectedRows.length;
+
+  void _handleRowSelection(bool isSelected, int rowIndex) {
+    
+      if (isSelected) {
+        selectedRows.add(rowIndex);
+      } else {
+        selectedRows.remove(rowIndex);
+      }
+    notifyListeners();
+  }
+
+  // void setState(VoidCallback fn) {
+  //   // Esto es necesario para poder utilizar setState en una clase no estatal.
+  //   // En una aplicación Flutter completa, esto sería manejado por un StatefulWidget
+  //   // o un mecanismo de gestión de estado apropiado.
+  //   fn();
+  // }
+}

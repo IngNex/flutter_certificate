@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:qr/ui/models/user_models.dart';
-import 'package:webview_flutter/webview_flutter.dart';
+//import 'package:webview_flutter/webview_flutter.dart';
 
-class PdfCertificate extends StatefulWidget {
-  const PdfCertificate({super.key, required this.user_certificate});
+class PdfPage extends StatefulWidget {
+  const PdfPage({super.key, required this.user_certificate});
 
   final Certificate user_certificate;
 
   @override
-  State<PdfCertificate> createState() => _PdfCertificateState();
+  State<PdfPage> createState() => _PdfPageState();
 }
 
-class _PdfCertificateState extends State<PdfCertificate> {
+class _PdfPageState extends State<PdfPage> {
   @override
   Widget build(BuildContext context) {
     final user_cert = widget.user_certificate;
@@ -25,9 +25,15 @@ class _PdfCertificateState extends State<PdfCertificate> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                ElevatedButton(
-                  onPressed: () {},
-                  child: const Text('Imprimir'),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    IconButton(onPressed: () {Navigator.of(context).pop();}, icon: Icon(Icons.arrow_back)),
+                    ElevatedButton(
+                      onPressed: () {},
+                      child: const Text('Imprimir'),
+                    ),
+                  ],
                 ),
                 Padding(
                   padding: const EdgeInsets.all(10.0),
@@ -132,7 +138,7 @@ class _PdfCertificateState extends State<PdfCertificate> {
                         style: TextStyle(fontSize: 16),
                       ),
                       const Padding(
-                        padding:  EdgeInsets.symmetric(vertical:10.0),
+                        padding: EdgeInsets.symmetric(vertical: 10.0),
                         child: Image(
                             image: AssetImage('assets/images/brand.png'),
                             color: Colors.grey,
@@ -141,7 +147,8 @@ class _PdfCertificateState extends State<PdfCertificate> {
                       const Text(
                         'Av. República de Panamá 4575 Ofic.\n803-804. Lima 34 - Perú',
                         textAlign: TextAlign.center,
-                        style: TextStyle(fontSize: 18, fontStyle: FontStyle.italic),
+                        style: TextStyle(
+                            fontSize: 18, fontStyle: FontStyle.italic),
                       ),
                     ],
                   ),
