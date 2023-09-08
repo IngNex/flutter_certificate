@@ -6,7 +6,7 @@ class ApiProvider with ChangeNotifier {
   final url = 'essac-certificados-qr.netlify.app';
   List<Certificate> certificate = [];
   final String token =
-      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijc3ZDI4NmJlLTViOGYtNDQ3YS05OWNmLTM1NTc4NjUwYmUxYiIsIm5hbWUiOiJhZG1pbiIsImlhdCI6MTY5MzI0MTMxMiwiZXhwIjoxNjk0MTA1MzEyfQ.BOyzgslJfISg7T7X9C2Zr3RvYE3MojHXTsNk5i6r1lQ";
+      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijc3ZDI4NmJlLTViOGYtNDQ3YS05OWNmLTM1NTc4NjUwYmUxYiIsIm5hbWUiOiJhZG1pbiIsImlhdCI6MTY5NDIwMDgxOSwiZXhwIjoxNjk1MDY0ODE5fQ.eEwrQBhFvaB7gP9JZ7Uq98tmsiLgvFTTVJBv8-jOwJI";
 
   Future<void> getCertificados() async {
     final headers = <String, String>{

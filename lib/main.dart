@@ -1,10 +1,7 @@
-import 'package:app_qr/ui/screens/prueba/prueba.dart';
-//import 'package:app_qr/ui/screens/qr/qr.dart';
+import 'package:app_qr/ui/screens/home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:app_qr/ui/provider/api_provider.dart';
-//import 'package:app_qr/ui/screens/home_page.dart';
-//import 'package:app_qr/ui/screens/login/login_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -25,7 +22,7 @@ class MyApp extends StatelessWidget {
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.redAccent),
          
         ),
-        home: const PrintingPdf(),
+        home: const HomePage(),
       ),
     );
   }

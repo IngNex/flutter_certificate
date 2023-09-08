@@ -1,3 +1,4 @@
+import 'package:app_qr/ui/screens/pdf/widget/imprimir_pdf.dart';
 import 'package:flutter/material.dart';
 import 'package:app_qr/ui/models/user_models.dart';
 //import 'package:webview_flutter/webview_flutter.dart';
@@ -29,10 +30,7 @@ class _PdfPageState extends State<PdfPage> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     IconButton(onPressed: () {Navigator.of(context).pop();}, icon: Icon(Icons.arrow_back)),
-                    ElevatedButton(
-                      onPressed: () {},
-                      child: const Text('Imprimir'),
-                    ),
+                    ImprimirPdf(certificate: user_cert),
                   ],
                 ),
                 Padding(
