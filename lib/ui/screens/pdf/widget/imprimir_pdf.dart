@@ -1,4 +1,5 @@
 import 'package:app_qr/ui/models/user_models.dart';
+import 'package:app_qr/ui/screens/pdf/widget/stucture_pdf.dart';
 import 'package:flutter/material.dart';
 import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart' as pw;
@@ -14,20 +15,20 @@ class ImprimirPdf extends StatefulWidget {
 }
 
 class _ImprimirPdfState extends State<ImprimirPdf> {
+
   @override
   Widget build(BuildContext context) {
-    return ElevatedButton(
+    
+    return IconButton(
       onPressed: _createPdf,
-      child: const Text('Imprimir'),
+      icon: const Icon(Icons.print),
+      tooltip: 'Print',
     );
   }
 
   void _createPdf() async {
     final cert = widget.certificate;
     final doc = pw.Document();
-
-    /// for using an image from assets
-    // final image = await imageFromAssetBundle('assets/image.png');
 
     final logo = await imageFromAssetBundle('assets/images/logo.png');
     final image = await imageFromAssetBundle('assets/images/escudo.png');
@@ -38,7 +39,32 @@ class _ImprimirPdfState extends State<ImprimirPdf> {
       pw.Page(
         pageFormat: PdfPageFormat.a4.landscape,
         build: (pw.Context context) {
-          return pw.Column(
+          return StructurePdf.buildStructurePdf(cert, logo, image, firma, brand);
+        },
+      ),
+    );
+    final title = cert.dni;
+    /// print the document using the iOS or Android print service:
+    await Printing.layoutPdf(
+        format: PdfPageFormat.a4.landscape,
+        name: "ESSAC_$title",
+        onLayout: (PdfPageFormat format) async => doc.save());
+
+    /// share the document to other applications:
+    //await Printing.sharePdf(bytes: await doc.save(), filename: 'my-document.pdf');
+
+    /// tutorial for using path_provider: https://www.youtube.com/watch?v=fJtFDrjEvE8
+    /// save PDF with Flutter library "path_provider":
+    // final output = await getTemporaryDirectory();
+    // final file = File('${output.path}/example.pdf');
+    // await file.writeAsBytes(await doc.save());
+  }
+
+  
+}
+/*
+
+pw.Column(
             crossAxisAlignment: pw.CrossAxisAlignment.center,
             mainAxisAlignment: pw.MainAxisAlignment.spaceBetween,
             children: [
@@ -147,22 +173,4 @@ class _ImprimirPdfState extends State<ImprimirPdf> {
               ),
             ],
           );
-        },
-      ),
-    ); // Page
-
-    /// print the document using the iOS or Android print service:
-    await Printing.layoutPdf(
-        format: PdfPageFormat.a4.landscape,
-        onLayout: (PdfPageFormat format) async => doc.save());
-
-    /// share the document to other applications:
-    // await Printing.sharePdf(bytes: await doc.save(), filename: 'my-document.pdf');
-
-    /// tutorial for using path_provider: https://www.youtube.com/watch?v=fJtFDrjEvE8
-    /// save PDF with Flutter library "path_provider":
-    // final output = await getTemporaryDirectory();
-    // final file = File('${output.path}/example.pdf');
-    // await file.writeAsBytes(await doc.save());
-  }
-}
+ */

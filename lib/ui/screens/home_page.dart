@@ -1,3 +1,4 @@
+import 'package:app_qr/ui/screens/pdf/widget/imprimir_pdf.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:app_qr/ui/models/user_models.dart';

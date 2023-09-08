@@ -169,7 +169,7 @@ class _PrintingPdfState extends State<PrintingPdf> {
             ],
           );
 
-          ;
+          
         },
       ),
     ); // Page
