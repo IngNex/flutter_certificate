@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:qr/common/models/store_model.dart';
+import 'package:app_qr/common/models/store_model.dart';
 
 class UserProvider with ChangeNotifier {
   UserProvider(this._isLogged) {

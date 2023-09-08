@@ -1,6 +1,6 @@
-import 'package:qr/auth/domain/interface/auth_interface.dart';
-import 'package:qr/auth/infrastructure/models/login_model.dart';
-import 'package:qr/common/models/store_model.dart';
+import 'package:app_qr/auth/domain/interface/auth_interface.dart';
+import 'package:app_qr/auth/infrastructure/models/login_model.dart';
+import 'package:app_qr/common/models/store_model.dart';
 
 import '../data/api/auth_data_source.dart';
 

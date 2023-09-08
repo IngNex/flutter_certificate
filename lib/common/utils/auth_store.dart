@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-import 'package:qr/common/models/store_model.dart';
+import 'package:app_qr/common/models/store_model.dart';
 
 class AuthStore {
   static final _storage = FlutterSecureStorage(aOptions: _getAndroidOptions());

@@ -1,4 +1,4 @@
-name: qr
+name: app_qr
 description: A new Flutter project.
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
@@ -31,11 +31,16 @@ dependencies:
   cupertino_icons: ^1.0.2
   flutter:
     sdk: flutter
-  flutter_secure_storage: ^7.0.1
-  http: ^1.1.0
-  provider: ^6.0.5
-  webview_flutter: ^3.0.4
   flutter_dotenv: ^5.0.2
+  flutter_secure_storage: ^7.0.1
+  get_it: ^7.2.0
+  http: ^1.1.0
+  pdf: ^3.10.4
+  printing: ^5.11.0
+  provider: ^6.0.5
+  qr: ^3.0.1
+  qr_flutter: ^4.1.0
+  webview_flutter: ^3.0.4
 
 dev_dependencies:
   flutter_lints: ^2.0.0

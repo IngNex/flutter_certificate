@@ -3,12 +3,12 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
-import 'package:qr/auth/infrastructure/models/auth_model.dart';
-import 'package:qr/auth/infrastructure/models/login_model.dart';
-import 'package:qr/common/models/api_error_model.dart';
-import 'package:qr/common/models/store_model.dart';
-import 'package:qr/common/utils/auth_store.dart';
-import 'package:qr/common/utils/http_helper.dart';
+import 'package:app_qr/auth/infrastructure/models/auth_model.dart';
+import 'package:app_qr/auth/infrastructure/models/login_model.dart';
+import 'package:app_qr/common/models/api_error_model.dart';
+import 'package:app_qr/common/models/store_model.dart';
+import 'package:app_qr/common/utils/auth_store.dart';
+import 'package:app_qr/common/utils/http_helper.dart';
 
 class AuthDataSource extends HttpHelper {
   AuthDataSource({apiUrl = 'auth'}) : super(apiUrl);

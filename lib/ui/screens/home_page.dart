@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:qr/ui/models/user_models.dart';
-import 'package:qr/ui/provider/api_provider.dart';
-import 'package:qr/ui/screens/pdf/pdf_page.dart';
+import 'package:app_qr/ui/models/user_models.dart';
+import 'package:app_qr/ui/provider/api_provider.dart';
+import 'package:app_qr/ui/screens/pdf/pdf_page.dart';
 
 const List<String> list = ['nombre', 'dni', 'curso'];
 

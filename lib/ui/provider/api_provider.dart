@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:qr/ui/models/user_models.dart';
+import 'package:app_qr/ui/models/user_models.dart';
 import 'package:http/http.dart' as http;
 
 class ApiProvider with ChangeNotifier {

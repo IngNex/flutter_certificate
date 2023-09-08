@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:provider/provider.dart';
-import 'package:qr/auth/screens/login_page.dart';
-import 'package:qr/auth/user_provider.dart';
-import 'package:qr/common/page/main_page.dart';
+import 'package:app_qr/auth/screens/login_page.dart';
+import 'package:app_qr/auth/user_provider.dart';
+import 'package:app_qr/common/page/main_page.dart';
 
 class AuthPage extends StatefulWidget {
   const AuthPage({super.key});
