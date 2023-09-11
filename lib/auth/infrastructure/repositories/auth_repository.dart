@@ -19,3 +19,4 @@ class AuthRepository implements AuthInterface {
     _authDataSource.logout();
   }
 }
+

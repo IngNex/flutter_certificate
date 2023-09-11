@@ -1,13 +1,13 @@
 class ApiErrorModel {
-  int? statusCode;
+  //int? statusCode;
   String? message;
-  String? error;
+  //String? error;
 
-  ApiErrorModel(this.error, this.message, this.statusCode);
+  ApiErrorModel(this.message);
 
   ApiErrorModel.fromJson(Map<String, dynamic> json) {
-    statusCode = json['statusCode'];
+    //statusCode = json['statusCode'];
     message = json['message'];
-    error = json['error'];
+    //error = json['error'];
   }
 }

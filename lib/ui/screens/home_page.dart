@@ -1,3 +1,5 @@
+import 'package:app_qr/auth/services/auth_service.dart';
+import 'package:app_qr/injectable.dart';
 import 'package:app_qr/ui/screens/pdf/widget/imprimir_pdf.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -14,23 +16,48 @@ class HomePage extends StatefulWidget {
   State<HomePage> createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _HomePageState extends State<HomePage> with WidgetsBindingObserver{
   bool sort = true;
   int _currentSortColumn = 0;
   List<Certificate>? filterData;
   final List<int> _selectedRows = [];
 
   TextEditingController controller = TextEditingController();
+
+  void logout() {
+    
+    final AuthService authService = locator<AuthService>();
+    authService.logout();
+  
+    }
+
   @override
   void initState() {
+    WidgetsBinding.instance.addObserver(this);
     final apiProvider = Provider.of<ApiProvider>(context, listen: false);
     apiProvider.getCertificados();
     filterData = apiProvider.certificate;
 
     super.initState();
   }
+@override
+  void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
+    super.dispose();
+  }
 
   String dropdownValue = list.first;
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    super.didChangeAppLifecycleState(state);
+
+    final isNotInBackground = state == AppLifecycleState.detached;
+
+    if (isNotInBackground) {
+      logout();
+    }
+  }
 
   @override
   Widget build(BuildContext context) {

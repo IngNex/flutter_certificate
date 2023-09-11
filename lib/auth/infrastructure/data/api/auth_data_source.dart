@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 
-import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
 import 'package:http/http.dart';
 import 'package:app_qr/auth/infrastructure/models/auth_model.dart';
 import 'package:app_qr/auth/infrastructure/models/login_model.dart';
@@ -24,16 +24,19 @@ class AuthDataSource extends HttpHelper {
     if (result.statusCode != HttpStatus.created) {
       final errorBody = json.decode(result.body);
       ApiErrorModel error = ApiErrorModel.fromJson(errorBody);
+      print('error'+ error.toString());
       return Future.error(error);
     }
 
-    final jsonReponse = json.decode(result.body);
-    AuthModel authModel = AuthModel.fromJson(jsonReponse);
+    final jsonResponse = json.decode(result.body);
+    print('holaaaaaaaaaa'+jsonResponse);
+    AuthModel authModel = AuthModel.fromJson(jsonResponse);
     StoreModel store = StoreModel(
-        authModel.user!.id,
-        authModel.user!.username,
-        authModel.token,
-        authModel.user!.role,);
+      authModel.user!.id,
+      authModel.user!.username,
+      authModel.token,
+      authModel.user!.role,
+    );
     AuthStore.save(store);
 
     return store;

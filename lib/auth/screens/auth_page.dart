@@ -1,11 +1,11 @@
-import 'package:flutter/cupertino.dart';
-import 'package:provider/provider.dart';
 import 'package:app_qr/auth/screens/login_page.dart';
-import 'package:app_qr/auth/user_provider.dart';
-import 'package:app_qr/common/page/main_page.dart';
+import 'package:app_qr/ui/screens/home_page.dart';
+import 'package:app_qr/users/services/user_provider.dart';
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class AuthPage extends StatefulWidget {
-  const AuthPage({super.key});
+  const AuthPage({Key? key}) : super(key: key);
 
   @override
   State<AuthPage> createState() => _AuthPageState();
@@ -13,10 +13,15 @@ class AuthPage extends StatefulWidget {
 
 class _AuthPageState extends State<AuthPage> {
   @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     UserProvider user = Provider.of<UserProvider>(context);
     if (user.isLogged) {
-      return const MainPage();
+      return const HomePage();
     } else {
       return const LoginPage();
     }

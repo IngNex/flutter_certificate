@@ -1,4 +1,4 @@
-import '../../domain/entity/user.dart';
+import 'package:app_qr/users/entity/user.dart';
 
 class AuthModel {
   String? token;
@@ -7,7 +7,7 @@ class AuthModel {
   AuthModel(this.token, this.user);
 
   AuthModel.fromJson(Map<String, dynamic> json) {
-    token = json['tokens']['accessToken'];
-    user = User.fromJson(json['authenticatedUser']);
+    token = json['token'];
+    user = User.fromJson(json['user']);
   }
 }

@@ -1,9 +1,9 @@
-import 'package:flutter/material.dart';
 import 'package:app_qr/common/models/store_model.dart';
+import 'package:flutter/cupertino.dart';
 
 class UserProvider with ChangeNotifier {
   UserProvider(this._isLogged) {
-    _id = _role = null;
+    _id = _role  = null;
   }
 
   UserProvider.fromStore(StoreModel store) {
